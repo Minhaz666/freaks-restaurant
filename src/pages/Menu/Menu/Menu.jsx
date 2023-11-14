@@ -21,9 +21,8 @@ const Menu = () => {
 
     return (
         <div>
-            <Cover img={menuImg} title={'Our Menu'}></Cover>
-            
             {/* main cover */}
+            <Cover img={menuImg} title={'Our Menu'}></Cover>
             <SectionTitles heading={"'Today's Offer'"} subheading={"don't miss"} ></SectionTitles>
             
             {/* offered */}
