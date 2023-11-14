@@ -6,12 +6,12 @@ import NavBar from '../pages/Shared/Navbar/navBar';
 const Main = () => {
     const location=useLocation()
     console.log(location)
-    const loginPath=location.pathname ==  '/login'
+    const nofooter=location.pathname ==  '/login' || location.pathname ==  '/signup' 
     return (
         <div>
             {<NavBar></NavBar>}
             <Outlet></Outlet>
-            {loginPath || <Footer></Footer>}
+            {nofooter || <Footer></Footer>}
         </div>
     );
 };
