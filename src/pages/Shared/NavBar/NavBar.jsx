@@ -1,15 +1,45 @@
-import React from 'react';
-import { Link} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider';
+import { IoIosCart } from "react-icons/io";
+import { useQueries } from '@tanstack/react-query';
+import useCart from '../../../hooks/useCart';
 
 const navBar = () => {
 
+    const { user, logOut } = useContext(AuthContext)
+    const [cart]=useCart();
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch((error) => {
+                console.log(error.message)
+            })
+    }
 
     const navbaroption = <>
         <li><Link to={'/'}>HOME</Link></li>
         <li><Link to={'/menu'}>MENU</Link></li>
         <li><Link to={`/order/salad`}>Order Food</Link></li>
-        <li><Link to={`/login`}>Login</Link></li>
         <li><Link to={`/signup`}>SignUp</Link></li>
+        {
+            user ?
+                <>
+                   <Link to='/'>
+                   <button className="btn mx-3">
+                        
+                        <div className="badge badge-secondary"><IoIosCart></IoIosCart>{cart?.length || 0}</div>
+                    </button>
+                   </Link>
+                    <p className=' text-yellow-200 mt-2 mx-2 '>{user.displayName}</p>
+                    <button className='btn btn-ghost' onClick={handleLogOut}>logout</button>
+                </>
+                :
+                <><li><Link to={`/login`}>Login</Link></li></>
+        }
     </>
 
     return (
@@ -24,7 +54,7 @@ const navBar = () => {
                             {navbaroption}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+                    <a className="btn btn-ghost normal-case text-xl">freaks-restaurant </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

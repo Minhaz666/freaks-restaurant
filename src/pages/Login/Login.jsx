@@ -1,11 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { loadCaptchaEnginge, LoadCanvasTemplate,validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../provider/AuthProvider';
+import Swal from 'sweetalert2'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [disabled,setDisabled]=useState(true)
 
     const {signIn,user,setUser}=useContext(AuthContext)
+
+    const navigate=useNavigate()
+
+    const location=useLocation()
+    console.log(location)
+    const from=location.state?.from?.pathname || '/';
 
     useEffect(()=>{
         loadCaptchaEnginge(4)
@@ -23,6 +31,13 @@ const Login = () => {
             const user = userCredential.user;
             setUser(user);
             // ...
+            navigate(from,{replace:true});
+
+            Swal.fire({
+                title: "Success",
+                text: "successfully login",
+                // icon: "question"
+              });
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -47,7 +62,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div> 
           <div className="hero min-h-screen bg-base-200" >
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left w-1/2">

@@ -9,6 +9,7 @@ import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/signUp";
+import PrivateRoute from "./PrivateRoute";
 
 
   const router = createBrowserRouter([
@@ -37,7 +38,7 @@ import SignUp from "../pages/SignUp/signUp";
             path: '/signup',
             element:<SignUp></SignUp>
         },
-      ]
+      ] 
     },
   ]);
 
