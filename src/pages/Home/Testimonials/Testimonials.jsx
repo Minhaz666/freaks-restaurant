@@ -20,7 +20,7 @@ const Testimonials = () => {
             })
     }, [])
 
-    console.log(reviews)
+    // console.log(reviews)
 
     return (
         <section className='my-20'>

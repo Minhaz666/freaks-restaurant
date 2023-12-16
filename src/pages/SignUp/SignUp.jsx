@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form"
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -9,6 +10,7 @@ const SignUp = () => {
     const { creatUser, userUpdate } = useContext(AuthContext)
 
     const [errormess, seterrormess] = useState("")
+    const navigate=useNavigate()
 
     const {
         register,
@@ -29,11 +31,32 @@ const SignUp = () => {
                 userUpdate(data.name, data.photoUrl)
                     .then(() => {
 
-                        Swal.fire({
-                            title: "update",
-                            text: "successfully email updated",
-                            // icon: "question"
-                        });
+                        const saveUser={name:data.name,email:data.email}
+                        // console.log(saveUser)
+
+                        fetch('http://localhost:5000/users',{
+                            method:"POST",
+                            headers:{
+                                'content-type':'application/json',
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                        .then(res=>res.json())
+                        .then(data=>{
+                            console.log(data.insertedId)
+                            if(data.insertedId){
+                                reset();
+
+                                Swal.fire({
+                                    title: "update",
+                                    text: "successfully email updated",
+                                    // icon: "question"
+                                });
+
+                                navigate('/login')
+
+                            }
+                        })
                     })
 
                     .catch((error) => {

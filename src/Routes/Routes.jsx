@@ -10,6 +10,9 @@ import Order from "../pages/Order/Order/Order";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/signUp";
 import PrivateRoute from "./PrivateRoute";
+import DashBoard from "../layout/DashBoard";
+import Mycart from "../pages/Dashboard/Mycart";
+import Payment from "../pages/Dashboard/Payment";
 
 
   const router = createBrowserRouter([
@@ -40,6 +43,21 @@ import PrivateRoute from "./PrivateRoute";
         },
       ] 
     },
+    {
+      path:"/dashboard",
+      element:<DashBoard></DashBoard>,
+      children:
+      [
+        {
+          path:'/dashboard/mycart',
+          element:<Mycart></Mycart>
+        },
+        {
+          path:'/dashboard/payment',
+          element:<Payment></Payment>
+        },
+      ]
+    }
   ]);
 
 

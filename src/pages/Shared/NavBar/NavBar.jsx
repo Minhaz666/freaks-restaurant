@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider';
 import { IoIosCart } from "react-icons/io";
-import { useQueries } from '@tanstack/react-query';
 import useCart from '../../../hooks/useCart';
 
-const navBar = () => {
+const NavBar = () => {
 
     const { user, logOut } = useContext(AuthContext)
-    const [cart]=useCart();
+    const [,cart,refetch]=useCart()
 
     const handleLogOut = () => {
         logOut()
@@ -24,11 +23,11 @@ const navBar = () => {
         <li><Link to={'/'}>HOME</Link></li>
         <li><Link to={'/menu'}>MENU</Link></li>
         <li><Link to={`/order/salad`}>Order Food</Link></li>
-        <li><Link to={`/signup`}>SignUp</Link></li>
+        <li><Link to={`/signup`}>SignUp</Link></li> 
         {
             user ?
                 <>
-                   <Link to='/'>
+                   <Link to='/dashboard/mycart'>
                    <button className="btn mx-3">
                         
                         <div className="badge badge-secondary"><IoIosCart></IoIosCart>{cart?.length || 0}</div>
@@ -70,4 +69,4 @@ const navBar = () => {
     );
 };
 
-export default navBar;
+export default NavBar;

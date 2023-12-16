@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../pages/Shared/Footer/Footer';
-import NavBar from '../pages/Shared/Navbar/navBar';
+import NavBar from '../pages/Shared/NavBar/NavBar';
 
 const Main = () => {
     const location=useLocation()
@@ -9,7 +9,7 @@ const Main = () => {
     const nofooter=location.pathname ==  '/login' || location.pathname ==  '/signup' 
     return (
         <div>
-            {<NavBar></NavBar>}
+            <NavBar></NavBar>
             <Outlet></Outlet>
             {nofooter || <Footer></Footer>}
         </div>

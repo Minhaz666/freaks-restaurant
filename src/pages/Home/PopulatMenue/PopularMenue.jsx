@@ -19,7 +19,7 @@ const PopularMenue = () => {
     const [menu]=useMenu()
 
     const popular= menu.filter(item=>item.category==="popular")
-    console.log(popular)
+    // console.log(popular)
 
     return (
       <section className='mb-12'>
