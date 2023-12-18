@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import DashBoard from "../layout/DashBoard";
 import Mycart from "../pages/Dashboard/Mycart";
 import Payment from "../pages/Dashboard/Payment";
+import AllUsers from "../pages/Dashboard/AllUsers";
 
 
   const router = createBrowserRouter([
@@ -55,6 +56,10 @@ import Payment from "../pages/Dashboard/Payment";
         {
           path:'/dashboard/payment',
           element:<Payment></Payment>
+        },
+        {
+          path:'/dashboard/allusers',
+          element:<AllUsers></AllUsers>
         },
       ]
     }

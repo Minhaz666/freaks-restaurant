@@ -45,6 +45,7 @@ const SignUp = () => {
                         .then(data=>{
                             console.log(data.insertedId)
                             if(data.insertedId){
+                                console.log(data.insertedId)
                                 reset();
 
                                 Swal.fire({
